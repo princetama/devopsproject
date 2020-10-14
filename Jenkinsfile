@@ -15,17 +15,21 @@ pipeline {
 	  
 	  stage ('Build')  {
 	      steps {
-            sh "cd  java-source"
+          
+            dir('java-source'){
             sh "mvn package"
-		  }
+          }
+        }
+         
       }
    
      stage ('SonarQube Analysis') {
         steps {
               withSonarQubeEnv('sonar') {
                 
-				sh "cd  java-source"
-        sh 'mvn -U clean install sonar:sonar'
+				dir('java-source'){
+                 sh 'mvn -U clean install sonar:sonar'
+                }
 				
               }
             }
@@ -103,7 +107,7 @@ pipeline {
                   sshagent(['sshkey']) {
                        
                         sh "scp -o StrictHostKeyChecking=no create-k8s-deployment.yaml admin@54.164.221.87:/home/admin"
-                        sh "scp -o StrictHostKeyChecking=no nodePort.yaml admin@54.153.113.169:/home/admin"
+                        sh "scp -o StrictHostKeyChecking=no nodePort.yaml admin@54.164.221.87:/home/admin"
                     }
                 }
             
