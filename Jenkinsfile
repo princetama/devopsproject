@@ -39,7 +39,7 @@ pipeline {
             steps {
                 rtServer (
                     id: "jfrog",
-                    url: "http://3.101.18.188:8082/artifactory",
+                    url: "http://54.80.242.104:8082/artifactory",
                     credentialsId: "jfrog"
                 )
 
@@ -84,8 +84,8 @@ pipeline {
             steps {
                   sshagent(['sshkey']) {
                        
-                        sh "scp -o StrictHostKeyChecking=no Dockerfile admin@54.164.221.87:/home/admin"
-                        sh "scp -o StrictHostKeyChecking=no create-container-image.yaml admin@54.153.113.169:/home/admin"
+                        sh "scp -o StrictHostKeyChecking=no Dockerfile admin@3.87.12.74:/home/admin"
+                        sh "scp -o StrictHostKeyChecking=no create-container-image.yaml admin@3.87.12.74:/home/admin"
                     }
                 }
             
@@ -95,7 +95,7 @@ pipeline {
             steps {
                   sshagent(['sshkey']) {
                        
-                        sh "ssh -o StrictHostKeyChecking=no admin@54.153.113.169 -C \"sudo ansible-playbook create-container-image.yml\""
+                        sh "ssh -o StrictHostKeyChecking=no admin@3.87.12.74 -C \"sudo ansible-playbook create-container-image.yml\""
                         
                     }
                 }
@@ -106,8 +106,8 @@ pipeline {
             steps {
                   sshagent(['sshkey']) {
                        
-                        sh "scp -o StrictHostKeyChecking=no create-k8s-deployment.yaml admin@54.164.221.87:/home/admin"
-                        sh "scp -o StrictHostKeyChecking=no nodePort.yaml admin@54.164.221.87:/home/admin"
+                        sh "scp -o StrictHostKeyChecking=no create-k8s-deployment.yaml admin@18.232.119.177:/home/admin"
+                        sh "scp -o StrictHostKeyChecking=no nodePort.yaml admin@18.232.119.177:/home/admin"
                     }
                 }
             
@@ -126,8 +126,8 @@ pipeline {
             steps {
                   sshagent(['sshkey']) {
                        
-                        sh "ssh -o StrictHostKeyChecking=no admin@52.53.197.193 -C \"sudo kubectl apply -f create-k8s-deployment.yaml\""
-                        sh "ssh -o StrictHostKeyChecking=no admin@52.53.197.193 -C \"sudo kubectl apply -f nodePort.yaml\""
+                        sh "ssh -o StrictHostKeyChecking=no admin@18.232.119.177 -C \"sudo kubectl apply -f create-k8s-deployment.yaml\""
+                        sh "ssh -o StrictHostKeyChecking=no admin@18.232.119.177 -C \"sudo kubectl apply -f nodePort.yaml\""
                         
                     }
                 }
