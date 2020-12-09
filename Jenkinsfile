@@ -95,7 +95,7 @@ pipeline {
             steps {
                   sshagent(['sshkey']) {
                        
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@34.229.61.202 -C \"sudo cd /home/ec2-user;sudo ansible-playbook create-container-image.yml\""
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@34.229.61.202 -C \"sudo ansible-playbook create-container-image.yaml\""
                         
                     }
                 }
