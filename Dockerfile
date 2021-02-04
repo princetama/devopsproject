@@ -1,6 +1,6 @@
 # Create Custom Docker Image
 # Pull tomcat latest image from dockerhub 
-From tomcat:latest
+FROM tomcat:latest
 
 # Maintainer
 MAINTAINER "PR Reddy - iwayQ" 
