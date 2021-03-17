@@ -39,22 +39,22 @@ pipeline {
             steps {
                 rtServer (
                     id: "jfrog",
-                    url: "http://13.212.194.210:8082/artifactory",
+                    url: "http://13.57.15.222:8082/artifactory",
                     credentialsId: "jfrog"
                 )
 
                 rtMavenDeployer (
                     id: "MAVEN_DEPLOYER",
                     serverId: "jfrog",
-                    releaseRepo: "libs-release",
-                    snapshotRepo: "libs-snapshot"
+                    releaseRepo: "iwayq-libs-release-local",
+                    snapshotRepo: "iwayq-libs-snapshot-local"
                 )
 
                 rtMavenResolver (
                     id: "MAVEN_RESOLVER",
                     serverId: "jfrog",
-                    releaseRepo: "libs-release",
-                    snapshotRepo: "libs-snapshot"
+                    releaseRepo: "iwayq-libs-release-local",
+                    snapshotRepo: "iwayq-libs-snapshot-local"
                 )
             }
     }
@@ -84,8 +84,8 @@ pipeline {
             steps {
                   sshagent(['sshkey']) {
                        
-                        sh "scp -o StrictHostKeyChecking=no Dockerfile ec2-user@13.212.74.45:/home/ec2-user"
-                        sh "scp -o StrictHostKeyChecking=no create-container-image.yaml ec2-user@13.212.74.45:/home/ec2-user"
+                        sh "scp -o StrictHostKeyChecking=no Dockerfile ec2-user@3.101.66.168:/home/ec2-user"
+                        sh "scp -o StrictHostKeyChecking=no create-container-image.yaml ec2-user@3.101.66.168:/home/ec2-user"
                     }
                 }
             
@@ -95,7 +95,7 @@ pipeline {
             steps {
                   sshagent(['sshkey']) {
                        
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@13.212.74.45 -C \"sudo ansible-playbook create-container-image.yaml\""
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@3.101.66.168 -C \"sudo ansible-playbook create-container-image.yaml\""
                         
                     }
                 }
@@ -106,8 +106,8 @@ pipeline {
             steps {
                   sshagent(['sshkey']) {
                        
-                        sh "scp -o StrictHostKeyChecking=no create-k8s-deployment.yaml ec2-user@13.212.221.132:/home/ec2-user"
-                        sh "scp -o StrictHostKeyChecking=no nodePort.yaml ec2-user@13.212.221.132:/home/ec2-user"
+                        sh "scp -o StrictHostKeyChecking=no create-k8s-deployment.yaml ec2-user@52.53.246.253:/home/ec2-user"
+                        sh "scp -o StrictHostKeyChecking=no nodePort.yaml ec2-user@52.53.246.253:/home/ec2-user"
                     }
                 }
             
@@ -126,8 +126,8 @@ pipeline {
             steps {
                   sshagent(['sshkey']) {
                        
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@13.212.221.132 -C \"sudo kubectl apply -f create-k8s-deployment.yaml\""
-                        sh "ssh -o StrictHostKeyChecking=no ec2-user@13.212.221.132 -C \"sudo kubectl apply -f nodePort.yaml\""
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@52.53.246.253 -C \"sudo kubectl apply -f create-k8s-deployment.yaml\""
+                        sh "ssh -o StrictHostKeyChecking=no ec2-user@52.53.246.253 -C \"sudo kubectl apply -f nodePort.yaml\""
                         
                     }
                 }

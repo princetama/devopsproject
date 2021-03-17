@@ -6,7 +6,7 @@
   - name: Pull .war artifact from Artifactory
     become: true
     get_url:
-      url: http://13.212.194.210:8082/artifactory/libs-release/com/iwayq/iwayQApp/1.0-RELEASE/iwayQApp-1.0-RELEASE.war
+      url: http://13.57.15.222:8082/artifactory/iwayq-libs-release-local/com/iwayq/iwayQApp/1.0-RELEASE/iwayQApp-1.0-RELEASE.war
       dest: /home/ec2-user
       url_username: admin
       url_password: Admin123
