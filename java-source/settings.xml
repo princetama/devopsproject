@@ -21,15 +21,11 @@
             <enabled>false</enabled>
           </snapshots>
           <id>central</id>
-          <name>libs-release</name>
-          <url>http://3.84.217.9:8082/artifactory/libs-release</url>
+          <name>iwayq-libs-release-local</name>
+          <url>http://18.207.136.250:8082/artifactory/iwayq-libs-release</url>
+	  
         </repository>
-        <repository>
-          <snapshots />
-          <id>snapshots</id>
-          <name>libs-snapshot</name>
-          <url>http://3.84.217.9:8082/artifactory/libs-snapshot</url>
-        </repository>
+       
       </repositories>
       <pluginRepositories>
         <pluginRepository>
@@ -37,16 +33,11 @@
             <enabled>false</enabled>
           </snapshots>
           <id>central</id>
-          <name>libs-release</name>
-          <url>http://3.84.217.9:8082/artifactory/libs-release</url>
+          <name>iwayq-libs-release-local</name>
+          <url>http://18.207.136.250:8082/artifactory/iwayq-libs-release</url>
+	  <blocked>false</blocked>
         </pluginRepository>
-        <pluginRepository>
-          <snapshots />
-          <id>snapshots</id>
-          <name>libs-snapshot</name>
-          <url>http://3.84.217.9:8082/artifactory/libs-snapshot</url>
-        </pluginRepository>
-      </pluginRepositories>
+        </pluginRepositories>
       <id>artifactory</id>
     </profile>
   </profiles>
