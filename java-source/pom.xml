@@ -67,11 +67,4 @@
 			</plugin>
 		</plugins>
 	</build>
-<distributionManagement>
-    <repository>
-        <id>central</id>
-        <name>iwayq-libs-release-local</name>
-        <url>http://18.207.136.250:8082/artifactory/iwayq-libs-release-local</url>
-    </repository>
-</distributionManagement>
 </project>
